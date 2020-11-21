@@ -23,6 +23,19 @@ namespace API_Project.Controllers
             return View();
         }
 
+        public IActionResult Data()
+        {
+            return View();
+        }
+        public IActionResult Symptoms()
+        {
+            return View();
+        }
+        public IActionResult AboutUS()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
