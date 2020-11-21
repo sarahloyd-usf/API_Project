@@ -12,6 +12,15 @@ a {
   color: #0366d6;
 }
 
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -33,6 +42,9 @@ html {
   html {
     font-size: 16px;
   }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }
 
 .border-top {
