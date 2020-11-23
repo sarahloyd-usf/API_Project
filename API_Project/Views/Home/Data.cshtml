@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model API_Project.Models.MyClass
 @{
     ViewData["Title"] = "Data";
 }
@@ -58,6 +59,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (CovidData coviddata in Model.data)
+                    {
                     <tr>
                         <td>
                             <span class="custom-checkbox">
@@ -65,15 +68,16 @@
                                 <label for="checkbox1"></label>
                             </span>
                         </td>
-                        <td>9015</td>
-                        <td>Windham County</td>
-                        <td>CT</td>
-                        <td>12</td>
-                        <td>504</td>
-                        <td>9/24/2020</td>
-                        <td>2/1/2020</td>
-                        <td>8/1/2020</td>
+                        <td>@(coviddata.fips_code)</td>
+                        <td>@(coviddata.county)</td>
+                        <td>@(coviddata.state)</td>
+                        <td>@(coviddata.covid_19_deaths)</td>
+                        <td>@(coviddata.total_deaths)</td>
+                        <td>@(coviddata.data_as_of)</td>
+                        <td>@(coviddata.startweek)</td>
+                        <td>@(coviddata.endweek)</td>
                     </tr>
+                    }
                 </tbody>
             </table>
             <div class="clearfix">
@@ -182,3 +186,4 @@
         </div>
     </div>
 </div>
+

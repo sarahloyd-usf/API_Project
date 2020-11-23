@@ -67,7 +67,7 @@ namespace API_Project.Controllers
                 // This is a useful place to insert a breakpoint and observe the error message
                 Console.WriteLine(e.Message);
             }
-            return View();
+            return View(myclass);
         }
         public IActionResult Symptoms()
         {
