@@ -5,24 +5,23 @@ using System.Threading.Tasks;
 
 namespace API_Project.Models
 {
-//    public class App_Models
-  //  {
-        //public class Users
-        //{
-        //    public int userid { get; set; }
-        //    public string FirstName { get; set; }
-        //    public string LastName { get; set; }
-        //    public string Email { get; set; }
-        //    public string password { get; set; }
+        public class User
+        {
+            public int userid { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Email { get; set; }
+            public string password { get; set; }
+            public List<UserFavorite> Favorites { get; set; }
 
-        //}
+        }
 
-        //public class UserFavorite
-        //{
-        //    public string fips_code { get; set; }
-        //    public int userid { get; set; }
+        public class UserFavorite
+        {
+            public string fips_code { get; set; }
+            public int userid { get; set; }
 
-        //}
+        }
 
         public class MyClass
         {
@@ -41,5 +40,4 @@ namespace API_Project.Models
             public int total_deaths { get; set; }
         }
 
-//    }
 }
