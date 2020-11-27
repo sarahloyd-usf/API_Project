@@ -6,68 +6,43 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using API_Project.Models;
-using System.Net.Http;
-using Newtonsoft.Json;
+using API_Project.DataAccess;
 
 namespace API_Project.Controllers
 {
     public class HomeController : Controller
     {
-        HttpClient httpClient;
+        public ApplicationDbContext dbContext;
 
-        static string BASE_URL = "https://data.cdc.gov/resource/6vqh-esgs.json";
-        //        static string API_KEY = "mdBybOievMdeX3eYSC0MhFu3U7xRV18xHAPG04qb"; //Add your API key here inside ""
-
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
+            dbContext = context;
             _logger = logger;
         }
+
+        private readonly ILogger<HomeController> _logger;
 
         public IActionResult Index()
         {
             return View();
         }
 
+        public class ViewModel
+        {
+            public IEnumerable<State> States { get; set; }
+            public IEnumerable<CovidData> CovidDatas { get; set; }
+        }
+
         public IActionResult Data()
         {
-            httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            //            httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);
-            httpClient.DefaultRequestHeaders.Accept.Add(
-                new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            //Get COVID and State Data for the view
+            ViewModel MyModel = new ViewModel();
+            MyModel.States = dbContext.States.OrderBy(s => s.StateName);
+            MyModel.CovidDatas = dbContext.CovidData.OrderBy(c => c.state);
 
-            //            string NATIONAL_PARK_API_PATH = BASE_URL + "/parks?limit=20";
-            string covidDataStr = "";
-
-            MyClass myclass = null;
-
-            httpClient.BaseAddress = new Uri(BASE_URL);
-
-            try
-            {
-                HttpResponseMessage response = httpClient.GetAsync(BASE_URL).GetAwaiter().GetResult();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    covidDataStr = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                }
-
-                if (!covidDataStr.Equals(""))
-                {
-                    //fix this crappy json
-                    covidDataStr = "{\"data\":" + covidDataStr + "}";
-                    // JsonConvert is part of the NewtonSoft.Json Nuget package
-                    myclass = JsonConvert.DeserializeObject<MyClass>(covidDataStr);
-                }
-            }
-            catch (Exception e)
-            {
-                // This is a useful place to insert a breakpoint and observe the error message
-                Console.WriteLine(e.Message);
-            }
-            return View(myclass);
+            //READ COVID data from the DB
+            //            return View(dbContext.CovidData.OrderBy(c => c.state).ToList());
+            return View(MyModel);
         }
         public IActionResult Symptoms()
         {
