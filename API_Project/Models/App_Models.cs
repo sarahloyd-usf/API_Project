@@ -18,6 +18,7 @@ namespace API_Project.Models
 
         public class UserFavorite
         {
+            public int UserFavoriteID { get; set; }
             public int CovidDataID { get; set; }
             public int UserID { get; set; }
 
