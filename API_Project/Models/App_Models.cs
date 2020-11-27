@@ -13,27 +13,15 @@ namespace API_Project.Models
             public string Email { get; set; }
             public string Password { get; set; }
         //            public List<UserFavorite> Favorites { get; set; }
-        public virtual ICollection<UserFavorite> Favorites { get; set; }
+        public virtual ICollection<CovidData> Favorites { get; set; }
     }
-
-        public class UserFavorite
-        {
-            public int UserFavoriteID { get; set; }
-            public int CovidDataID { get; set; }
-            public int UserID { get; set; }
-
-            public virtual ICollection<User> Users { get; set; }
-            public virtual ICollection<CovidData> CovidDatas { get; set; }
-
-        }
 
     public class State
     {
-        public string state { get; set; }
-
-        public virtual ICollection<CovidData> CovidDatas { get; set; }
-
+        public int StateID { get; set; }
+        public string StateName { get; set; }
     }
+
     public class MyClass
             {
                 public List<CovidData> data { get; set; }
@@ -51,7 +39,7 @@ namespace API_Project.Models
             public int covid_19_deaths { get; set; }
             public int total_deaths { get; set; }
 
-        public virtual ICollection<UserFavorite> Favorites { get; set; }
+        public virtual ICollection<User> Users { get; set; }
        }
 
 }
