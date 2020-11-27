@@ -50,7 +50,6 @@ namespace API_Project.Controllers
             dbContext.States.Add(new State() { StateName = "CO" });
             dbContext.States.Add(new State() { StateName = "CT" });
             dbContext.States.Add(new State() { StateName = "DE" });
-            dbContext.States.Add(new State() { StateName = "AL" });
             dbContext.States.Add(new State() { StateName = "DC" });
             dbContext.States.Add(new State() { StateName = "FL" });
             dbContext.States.Add(new State() { StateName = "GA" });

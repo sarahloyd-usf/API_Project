@@ -44,6 +44,27 @@ namespace API_Project.Controllers
             //            return View(dbContext.CovidData.OrderBy(c => c.state).ToList());
             return View(MyModel);
         }
+
+        [HttpGet]
+        public IActionResult Data(string StateSel)
+        {
+            //Get COVID and State Data for the view
+            ViewModel MyModel = new ViewModel();
+            MyModel.States = dbContext.States.OrderBy(s => s.StateName);
+            if (StateSel == null || StateSel == "All")
+            {
+                MyModel.CovidDatas = dbContext.CovidData.OrderBy(c => c.state);
+            }
+            else
+            {
+                MyModel.CovidDatas = dbContext.CovidData.Where(c => c.state == StateSel).OrderBy(c => c.county);
+            }
+
+            //READ COVID data from the DB
+            //            return View(dbContext.CovidData.OrderBy(c => c.state).ToList());
+            return View(MyModel);
+        }
+
         public IActionResult Symptoms()
         {
             return View();

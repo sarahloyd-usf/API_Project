@@ -19,13 +19,14 @@
                     </div>
                     <div class="col-sm">
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" >
                                 Select State
                             </button>
                             <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/Home/Data/?StateSel=All">All</a></li>
                                 @foreach (State state in Model.States)
                                 {
-                                    <li><a class="dropdown-item" href="#">@(state.StateName)</a></li>
+                                    <li><a class="dropdown-item" href="/Home/Data/?StateSel=@(state.StateName)">@(state.StateName)</a></li>
                                 }
                             </ul>
                         </div>
