@@ -33,24 +33,15 @@ namespace API_Project.Controllers
             public IEnumerable<CovidData> CovidDatas { get; set; }
         }
 
-        public IActionResult Data()
-        {
-            //Get COVID and State Data for the view
-            ViewModel MyModel = new ViewModel();
-            MyModel.States = dbContext.States.OrderBy(s => s.StateName);
-            MyModel.CovidDatas = dbContext.CovidData.OrderBy(c => c.state);
-
-            //READ COVID data from the DB
-            //            return View(dbContext.CovidData.OrderBy(c => c.state).ToList());
-            return View(MyModel);
-        }
-
         [HttpGet]
         public IActionResult Data(string StateSel)
         {
             //Get COVID and State Data for the view
             ViewModel MyModel = new ViewModel();
+            //Get all the states
             MyModel.States = dbContext.States.OrderBy(s => s.StateName);
+
+            //get all the covid data or filter it by state if provided
             if (StateSel == null || StateSel == "All")
             {
                 MyModel.CovidDatas = dbContext.CovidData.OrderBy(c => c.state);
@@ -60,8 +51,6 @@ namespace API_Project.Controllers
                 MyModel.CovidDatas = dbContext.CovidData.Where(c => c.state == StateSel).OrderBy(c => c.county);
             }
 
-            //READ COVID data from the DB
-            //            return View(dbContext.CovidData.OrderBy(c => c.state).ToList());
             return View(MyModel);
         }
 
