@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model API_Project.Models.ChartModel
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Select State
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=AK">AK</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=AL">AL</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=AR">AR</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=AZ">AZ</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=CA">CA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=CO">CO</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=CT">CT</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=DC">DC</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=DE">DE</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=FL">FL</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=GA">GA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=HI">HI</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=IA">IA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=ID">ID</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=IL">IL</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=IN">IN</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=KS">KS</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=KY">KY</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=LA">LA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MA">MA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MD">MD</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=ME">ME</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MI">MI</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MN">MN</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MO">MO</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MS">MS</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=MT">MT</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NC">NC</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=ND">ND</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NE">NE</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NH">NH</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NJ">NJ</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NM">NM</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NV">NV</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=NY">NY</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=OH">OH</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=OK">OK</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=OR">OR</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=PA">PA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=RI">RI</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=SC">SC</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=SD">SD</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=TN">TN</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=TX">TX</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=UT">UT</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=VA">VA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=WA">WA</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=WI">WI</a></li>
+        <li><a class="dropdown-item" href="/Home/Chart/?StateSel=WV">WV</a></li>
+    </ul>
+</div>
+<canvas id="barchartexample" width="600" height="350"></canvas>
+
+<script>
+    new Chart(document.getElementById("barchartexample"), {
+      type: '@Model.ChartType',
+      data: {
+        labels: [@Html.Raw(@Model.Labels)],
+        datasets: [
+          {
+            label: "COVID Deaths",
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+            data: [@Model.Data]
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: '@Model.Title'
+        }
+      }
+    });
+</script>

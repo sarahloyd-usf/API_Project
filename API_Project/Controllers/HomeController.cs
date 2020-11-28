@@ -28,6 +28,32 @@ namespace API_Project.Controllers
              return View();
         }
 
+        public IActionResult Chart(string StateSel)
+        {
+            string[] ChartLabels = new string[] { "Counties" };
+            int[] ChartData = new int[] { 0 };
+
+            ChartModel Model = new ChartModel
+            {
+                ChartType = "bar",
+                Labels = String.Join(",", ChartLabels.Select(d => "'" + d + "'")),
+                Data = String.Join(",", ChartData.Select(d => d)),
+                Title = "First Select a State!"
+            };
+
+            if (StateSel != null)
+            {
+                Model = new ChartModel
+                {
+                    ChartType = "bar",
+                    Labels = String.Join(",", dbContext.CovidData.Where(c => c.state == StateSel).Select(c => "'" + c.county + "'")),
+                    Data = String.Join(",", dbContext.CovidData.Where(c => c.state == StateSel).Select(c =>  c.covid_19_deaths )),
+                    Title = "COVID-19 Deaths By County in " + StateSel
+                };
+            }
+            return View(Model);
+        }
+
         public class ViewModel
         {
             public IEnumerable<State> States { get; set; }
