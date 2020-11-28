@@ -23,16 +23,16 @@
                                 Select State
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/Home/Data/?StateSel=All">All</a></li>
+                                <li><a class="dropdown-item" href="/Home/Data/?StateSel=All&Fav=0">All</a></li>
                                 @foreach (State state in Model.States)
                                 {
-                                    <li><a class="dropdown-item" href="/Home/Data/?StateSel=@(state.StateName)">@(state.StateName)</a></li>
+                                    <li><a class="dropdown-item" href="/Home/Data/?StateSel=@(state.StateName)&Fav=0">@(state.StateName)</a></li>
                                 }
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm">
-                        <a href="/Home/Data/1" class="btn btn-info" data-toggle="modal"><span>Show Favorites</span></a>
+                        <a href="/Home/Data/?Fav=1" class="btn btn-info"><span>Show Favorites</span></a>
                     </div>
                     <div class="col-sm">
                         <a href="/Home/Favs" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Manage Favs</span></a>

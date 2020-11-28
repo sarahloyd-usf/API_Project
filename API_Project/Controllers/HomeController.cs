@@ -35,7 +35,7 @@ namespace API_Project.Controllers
         }
 
         [HttpGet]
-        public IActionResult Data(string StateSel)
+        public IActionResult Data(string StateSel, int Fav)
         {
             //Get COVID and State Data for the view
             ViewModel MyModel = new ViewModel();
@@ -43,7 +43,11 @@ namespace API_Project.Controllers
             MyModel.States = dbContext.States.OrderBy(s => s.StateName);
 
             //get all the covid data or filter it by state if provided
-            if (StateSel == null || StateSel == "All")
+            if (Fav == 1)
+            {
+                MyModel.CovidDatas = dbContext.CovidData.Include(c => c.Favorites.Where(f => f.UserID == 1)).Where(c => c.Favorites.Count > 0);
+            }
+            else if(StateSel == null || StateSel == "All")
             {
                 MyModel.CovidDatas = dbContext.CovidData.OrderBy(c => c.state);
             }
@@ -51,6 +55,8 @@ namespace API_Project.Controllers
             {
                 MyModel.CovidDatas = dbContext.CovidData.Where(c => c.state == StateSel).OrderBy(c => c.county);
             }
+            //example read
+            //           IEnumerable<User> user = dbContext.Users.Include(u => u.Favorites).Where(u => u.UserID == 1);
 
             return View(MyModel);
         }
