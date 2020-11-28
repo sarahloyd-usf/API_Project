@@ -5,15 +5,23 @@ using System.Threading.Tasks;
 
 namespace API_Project.Models
 {
-        public class User
-        {
-            public int UserID { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string Email { get; set; }
-            public string Password { get; set; }
-        //            public List<UserFavorite> Favorites { get; set; }
-        public virtual ICollection<CovidData> Favorites { get; set; }
+    public class User
+    {
+        public int UserID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
+    }
+
+    public class Favorite
+    {
+        public int FavoriteID { get; set; }
+        public int UserID { get; set; }
+        public int CovidDataID { get; set; }
+        public CovidData CovidData { get; set; }
+        public User User { get; set; }
     }
 
     public class State
@@ -39,7 +47,7 @@ namespace API_Project.Models
             public int covid_19_deaths { get; set; }
             public int total_deaths { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Favorite> Favorites { get; set; }
        }
 
 }

@@ -10,5 +10,6 @@ namespace API_Project.DataAccess
         public DbSet<User> Users { get; set; }
         public DbSet<CovidData> CovidData { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
     }
 }

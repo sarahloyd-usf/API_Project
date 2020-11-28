@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using API_Project.Models;
 using API_Project.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace API_Project.Controllers
 {
@@ -24,7 +25,7 @@ namespace API_Project.Controllers
 
         public IActionResult Index()
         {
-            return View();
+             return View();
         }
 
         public class ViewModel

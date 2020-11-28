@@ -32,15 +32,6 @@ namespace API_Project.Controllers
 
         public async Task<ViewResult> SeedOperations()
         {
-            // Create User
-            User MyUser = new User();
-            MyUser.Email = "bapo@gmail.com";
-            MyUser.FirstName = "Bob";
-            MyUser.LastName = "Apo";
-            MyUser.Password = "abc123";
-
-            dbContext.Users.Add(MyUser);
-
             //Populate States
             dbContext.States.Add(new State() { StateName = "AK" });
             dbContext.States.Add(new State() { StateName = "AL" });
@@ -134,18 +125,28 @@ namespace API_Project.Controllers
 
             }
 
+            //example read
+            //           IEnumerable<User> user = dbContext.Users.Include(u => u.Favorites).Where(u => u.UserID == 1);
+
+
+            // Create User with some favorites
+            User MyUser = new User();
+            MyUser.Email = "bapo@gmail.com";
+            MyUser.FirstName = "Bob";
+            MyUser.LastName = "Apo";
+            MyUser.Password = "abc123";
+
+            dbContext.Users.Add(MyUser);
 
             dbContext.SaveChanges();
 
-            //// READ operation
-            //Company CompanyRead1 = dbContext.Companies
-            //                        .Where(c => c.symbol == "MCOB")
-            //                        .First();
+            //add some favorites
+            dbContext.Favorites.Add(new Favorite() { UserID = dbContext.Users.Single(u => u.LastName == "Apo").UserID, CovidDataID = 3 });
+            dbContext.Favorites.Add(new Favorite() { UserID = dbContext.Users.Single(u => u.LastName == "Apo").UserID, CovidDataID = 12 });
+            dbContext.Favorites.Add(new Favorite() { UserID = dbContext.Users.Single(u => u.LastName == "Apo").UserID, CovidDataID = 34 });
 
-            //Company CompanyRead2 = dbContext.Companies
-            //                        .Include(c => c.Quotes)
-            //                        .Where(c => c.symbol == "MCOB")
-            //                        .First();
+            dbContext.SaveChanges();
+
 
             //// UPDATE operation
             //CompanyRead1.iexId = "MCOB";
