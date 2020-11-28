@@ -9,7 +9,6 @@
 
 <div class="container-xl">
 
-
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
@@ -35,19 +34,13 @@
                         <a href="/Home/Data/?Fav=1" class="btn btn-info"><span>Show Favorites</span></a>
                     </div>
                     <div class="col-sm">
-                        <a href="/Home/Favs" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Manage Favs</span></a>
+                        <a href="/Home/Data/?StateSel=All&Fav=0" class="btn btn-success" ><span>Show All</span></a>
                     </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        @*<th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>*@
                         <th>Fips Code</th>
                         <th>County</th>
                         <th>State</th>
@@ -56,18 +49,13 @@
                         <th>Data as of</th>
                         <th>StartWeek</th>
                         <th>EndWeek</th>
+                        <th>Fav</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (CovidData coviddata in Model.CovidDatas)
                     {
                         <tr>
-                            @*                           <td>
-                                    <span class="custom-checkbox">
-                                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                        <label for="checkbox1"></label>
-                                    </span>
-                                </td>*@
                             <td>@(coviddata.fips_code)</td>
                             <td>@(coviddata.county)</td>
                             <td>@(coviddata.state)</td>
@@ -76,7 +64,16 @@
                             <td>@(coviddata.data_as_of)</td>
                             <td>@(coviddata.startweek)</td>
                             <td>@(coviddata.endweek)</td>
-                        </tr>
+                            <td>@if (coviddata.Favorites.Count == 0) {
+                                <div><a href="/Home/Data/?Add=@(coviddata.CovidDataID)">Add</a></div>
+                            }
+                            else
+                            {
+                                <div><a href="/Home/Data/?Del=@(coviddata.CovidDataID)">Del</a></div>
+                            }
+                            </td>
+
+                    </tr>
                     }
                 </tbody>
             </table>
