@@ -12,6 +12,7 @@
     <br />
     <div class="row">
         <h2>ABOUT US</h2>
+        <br />
 
         <div class="col-lg-4">
             <img src="/img/sarah.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /></>
@@ -24,8 +25,32 @@
             <img src="/img/hammad3.jpg" . class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777" /></img>
             <h2>Hammad Muniem</h2>
             <p>Hammad graduated with his BS in Business Administration in 2017. After gaining experience in product management and digital marketing for 2 years, he decided to attain some technical skills by pursuing MS in Business Analytics at USF.</p>
-            <p>His contribution to the site includes linking the site to the Coronavirus API and inclduing Covid charts to the website to make it more informative</p>
+            <p>Aside from HTML build, his contribution to the site also includes various tools to the website in order to make the website a complete source of information</p>
 
+        </div>
+        <div>
+            <h2>OUR PROJECT</h2>
+            <p>
+                Our .Net Web application is built with C# following the Model/View/Controller (MVC) model and utilizing Entity Framework (EF) and a code-first design approach. The application has five pages, two of which are dynamically driven...the data page and the chart page. The application utilizes COVID data provided via an API on Data.gov that provides information about COVID deaths at a county level in the United States. This application is hosted on Azure using Azure SQL and Azure App Services.
+            </p>
+            <p>
+                Starting with our HTML5/CSS/Javascript prototype which uses the Bootstrap framework, we first converted to the MVC model, setting up the framework of controller code, action methods, views, and templates. We then created the first version of our object model that would eventually drive the data model via the EF and that matched the data expected from the API. Next, we created the code to pull the data from the API endpoint in JSON format and convert it to the object model. Having successfully done this and displayed the data in a view, we began work on the Database.
+            </p>
+            <p>
+                Using various boiler-plate and customized code, we set up the database connection to a local SQL instance for development. Once configured, starting the application built out the DB automatically. We created code that is used to seed the database with a sample user, favorites, states, and which pulls the data from the API and populates it in the CovidData table. Over the course of development, we modified the model several times to make sure the DB was built as expected and per the intended design. When then developed all the Controller and View code for the two data-driven pages.
+            </p>
+            <p>
+                The DB has four related tables. CovidData contains the data from the API with a one-to-many relationship to a table of States. The Users table contains information on users of the site which has a many-to-many relationship with the CovdData table to allow the user to mark their counties of interest as Favorites. Functionality to manage users, handle login, and track users through the application is not present. Instead, for the purposes of this prototype, one user is pre-loaded and used throughout. However, the functionality to manage favorites is all implemented with CRUD functions present.
+            </p>
+            <p>
+                Master-detail functionality is demonstrated on the Data page in two ways. First, selecting a State from the database-populated drop-down populates the table with only data from that state demonstrating the master-detail relationship between states and counties. Secondly, on the same page, the user can display only their Favorite records and add or delete them demonstrating the master-detail relationship between users and their favorites.
+            </p>
+            <p>
+                The Chart page uses Chart.js to render the death counts by county for a selected state on a bar graph. This also demonstrates the master-detail relationship between States and Counties.
+            </p>
+            <p>
+                Overall, we found this assignment a significant challenge working as a two-person team with limited background in the subject area. We used various sources to help us complete this assignment primary of which was the instructor's videos supplemented with Microsft documentation on MVC and EF in .Net and many Google searches for various tutorials and discussion posts.
+            </p>
         </div>
     </div>
 
@@ -34,7 +59,7 @@
             <br />
             <br />
             <h2>See our Github repo:</h2>
-            <p><a class="btn btn-secondary" href="https://github.com/sarahloyd-usf/Assignment_LookAndFeel" role="button">Github Link &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="https://github.com/sarahloyd-usf/API_Project" role="button">Github Link &raquo;</a></p>
         </div>
     </div>
 
@@ -48,6 +73,6 @@
             <p><a class="btn btn-secondary" href="https://data.cdc.gov/NCHS/AH-County-level-Provisional-COVID-19-Deaths-Counts/6vqh-esgs" role="button">View Data Source &raquo;</a></p>
         </div>
         <div class="col-md-5">
-            <img src="/img/dataModel2.png" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
+            <img src="/img/datamodel3.png" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
         </div>
     </div>
